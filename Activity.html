@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>URL Shortener</title>
+</head>
+<body>
+<h1>URL Shortener</h1>
+<p>Enter Long URL: <input type="text" id="long-url"></p>
+<button onclick="shortenUrl()">Shorten URL</button>
+<p id="shortened-url"></p>
+<p>Enter Shortened URL: <input type="text" id="shortened-url-input"></p>
+<button onclick="getOriginalUrl()">Get Original URL</button>
+<p id="original-url"></p>
+
+<script>
+var urlMappings = {};
+
+function shortenUrl() {
+  var longUrl = document.getElementById("long-url").value;
+  var shortUrl = "http://yourshortener.com/" + Math.random().toString(36).substring(2, 8);
+  urlMappings[shortUrl] = longUrl; // Store the mapping
+  document.getElementById("shortened-url").innerText = "Shortened URL: " + shortUrl;
+}
+
+function getOriginalUrl() {
+  var shortUrl = document.getElementById("shortened-url-input").value;
+  var originalUrl = urlMappings[shortUrl];
+  if (originalUrl) {
+    document.getElementById("original-url").innerText = "Original URL: " + originalUrl;
+  } else {
+    document.getElementById("original-url").innerText = "Original URL not found.";
+  }
+}
+</script>
+</body>
+</html>
+
